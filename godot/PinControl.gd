@@ -9,12 +9,14 @@ const TDO = 3
 # This is set with set_model by Root's _ready
 var model
 
+@onready var ir = find_node("IRValue")
+@onready var dr = find_node("DRValue")
 
-onready var pin_node = {
-    TCK: get_node("TCK"),
-    TMS: get_node("TMS"),
-    TDI: get_node("TDI"),
-    TDO: get_node("TDO"),
+@onready var pin_node = {
+    TCK: find_node("TCK"),
+    TMS: find_node("TMS"),
+    TDI: find_node("TDI"),
+    TDO: find_node("TDO"),
 }
 
 
@@ -39,9 +41,12 @@ func flip(pin):
 
 func _ready():
     print(pin_node[TCK].find_node("button"))
-    pin_node[TCK].find_node("button").connect("pressed", self, "flip", [TCK])
-    pin_node[TMS].find_node("button").connect("pressed", self, "flip", [TMS])
-    pin_node[TDI].find_node("button").connect("pressed", self, "flip", [TDI])
-    pin_node[TDO].find_node("button").connect("pressed", self, "flip", [TDO])
+    pin_node[TCK].find_node("button").connect("pressed", self.flip, [TCK])
+    pin_node[TMS].find_node("button").connect("pressed", self.flip, [TMS])
+    pin_node[TDI].find_node("button").connect("pressed", self.flip, [TDI])
+    pin_node[TDO].find_node("button").connect("pressed", self.flip, [TDO])
+
+func _process(delta):
+    ir = model.DATA_REGISTER
 
 

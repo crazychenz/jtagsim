@@ -1,235 +1,274 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://bbghqyoe5uk7a"]
 
-[ext_resource path="res://highlighter.gd" type="Script" id=1]
-[ext_resource path="res://jtag-state-machine.png" type="Texture" id=2]
-[ext_resource path="res://jtag_model.gd" type="Script" id=3]
-[ext_resource path="res://init.gd" type="Script" id=4]
-[ext_resource path="res://PinControl.gd" type="Script" id=5]
-[ext_resource path="res://StatePresentation.gd" type="Script" id=6]
+[ext_resource type="Script" path="res://highlighter.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b12v2poa1bb6p" path="res://jtag-state-machine.png" id="2"]
+[ext_resource type="Script" path="res://jtag_model.gd" id="3"]
+[ext_resource type="Script" path="res://init.gd" id="4"]
+[ext_resource type="Script" path="res://PinControl.gd" id="5"]
+[ext_resource type="Script" path="res://StatePresentation.gd" id="6"]
 
 [node name="Root" type="Node"]
-script = ExtResource( 4 )
+script = ExtResource( "4" )
 
 [node name="StatePresentation" type="Node2D" parent="."]
-position = Vector2( -24, -8 )
-script = ExtResource( 6 )
+position = Vector2(21, 17)
+script = ExtResource( "6" )
 
-[node name="Jtag-state-machine" type="Sprite" parent="StatePresentation"]
-position = Vector2( 398, 447 )
-scale = Vector2( 0.454274, 0.408397 )
-texture = ExtResource( 2 )
+[node name="Jtag-state-machine" type="Sprite2D" parent="StatePresentation"]
+position = Vector2(357, 280)
+scale = Vector2(0.454274, 0.408397)
+texture = ExtResource( "2" )
 
-[node name="highlighter" type="Node2D" parent="StatePresentation"]
-script = ExtResource( 1 )
-size = Vector2( 220, 70 )
+[node name="Highlighter" type="Node2D" parent="StatePresentation"]
+script = ExtResource( "1" )
+size = Vector2(220, 70)
 
-[node name="TEST_LOGIC_RESET" type="Position2D" parent="StatePresentation"]
-position = Vector2( 50, 178 )
+[node name="StatePositions" type="Node2D" parent="StatePresentation"]
 
-[node name="RUN_TEST_IDLE" type="Position2D" parent="StatePresentation"]
-position = Vector2( 50, 234 )
+[node name="TEST_LOGIC_RESET" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(9, 11)
 
-[node name="SELECT_DR_SCAN" type="Position2D" parent="StatePresentation"]
-position = Vector2( 298, 234 )
+[node name="RUN_TEST_IDLE" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(9, 67)
 
-[node name="CAPTURE_DR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 298, 298 )
+[node name="SELECT_DR_SCAN" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(257, 67)
 
-[node name="SHIFT_DR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 306, 354 )
+[node name="CAPTURE_DR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(257, 131)
 
-[node name="EXIT1_DR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 306, 418 )
+[node name="SHIFT_DR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(265, 187)
 
-[node name="PAUSE_DR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 306, 482 )
+[node name="EXIT1_DR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(265, 251)
 
-[node name="EXIT2_DR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 306, 538 )
+[node name="PAUSE_DR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(265, 315)
 
-[node name="UPDATE_DR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 306, 602 )
+[node name="EXIT2_DR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(265, 371)
 
-[node name="SELECT_IR_SCAN" type="Position2D" parent="StatePresentation"]
-position = Vector2( 546, 234 )
+[node name="UPDATE_DR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(265, 435)
 
-[node name="CAPTURE_IR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 546, 298 )
+[node name="SELECT_IR_SCAN" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(505, 67)
 
-[node name="SHIFT_IR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 546, 362 )
+[node name="CAPTURE_IR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(505, 131)
 
-[node name="EXIT1_IR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 546, 426 )
+[node name="SHIFT_IR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(505, 195)
 
-[node name="PAUSE_IR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 546, 490 )
+[node name="EXIT1_IR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(505, 259)
 
-[node name="EXIT2_IR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 546, 546 )
+[node name="PAUSE_IR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(505, 323)
 
-[node name="UPDATE_IR" type="Position2D" parent="StatePresentation"]
-position = Vector2( 546, 610 )
+[node name="EXIT2_IR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(505, 379)
+
+[node name="UPDATE_IR" type="Position2D" parent="StatePresentation/StatePositions"]
+position = Vector2(505, 443)
 
 [node name="PinControl" type="Control" parent="."]
-margin_left = -24.0
-margin_top = -8.0
-margin_right = 16.0
-margin_bottom = 32.0
-script = ExtResource( 5 )
+offset_left = 45.0
+offset_top = 25.0
+offset_right = 45.0
+offset_bottom = 25.0
+script = ExtResource( "5" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TMS" type="Control" parent="PinControl"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="PinControl"]
+offset_left = 815.0
+offset_top = 428.0
+offset_right = 971.0
+offset_bottom = 556.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="state" type="TextEdit" parent="PinControl/TMS"]
-margin_left = 448.0
-margin_top = 888.0
-margin_right = 488.0
-margin_bottom = 928.0
-text = "0"
+[node name="TMS" type="HBoxContainer" parent="PinControl/VBoxContainer"]
+offset_right = 156.0
+offset_bottom = 29.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="button" type="Button" parent="PinControl/TMS"]
-margin_left = 496.0
-margin_top = 864.0
-margin_right = 608.0
-margin_bottom = 928.0
+[node name="label" type="Label" parent="PinControl/VBoxContainer/TMS"]
+offset_top = 1.0
+offset_right = 33.0
+offset_bottom = 27.0
 text = "TMS"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label" type="Label" parent="PinControl/TMS"]
-margin_left = 448.0
-margin_top = 864.0
-margin_right = 488.0
-margin_bottom = 878.0
-text = "TMS"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TCK" type="Control" parent="PinControl"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="state" type="TextEdit" parent="PinControl/TCK"]
-margin_left = 448.0
-margin_top = 800.0
-margin_right = 488.0
-margin_bottom = 840.0
+[node name="state" type="TextEdit" parent="PinControl/VBoxContainer/TMS"]
+offset_left = 37.0
+offset_right = 107.0
+offset_bottom = 29.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="button" type="Button" parent="PinControl/TCK"]
-margin_left = 496.0
-margin_top = 776.0
-margin_right = 608.0
-margin_bottom = 840.0
-text = "Tick"
+[node name="button" type="Button" parent="PinControl/VBoxContainer/TMS"]
+offset_left = 111.0
+offset_right = 156.0
+offset_bottom = 29.0
+text = "TMS"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label" type="Label" parent="PinControl/TCK"]
-margin_left = 448.0
-margin_top = 776.0
-margin_right = 488.0
-margin_bottom = 790.0
+[node name="TCK" type="HBoxContainer" parent="PinControl/VBoxContainer"]
+offset_top = 33.0
+offset_right = 156.0
+offset_bottom = 62.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="PinControl/VBoxContainer/TCK"]
+offset_top = 1.0
+offset_right = 29.0
+offset_bottom = 27.0
 text = "TCK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TDI" type="Control" parent="PinControl"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="state" type="TextEdit" parent="PinControl/TDI"]
-margin_left = 176.0
-margin_top = 888.0
-margin_right = 216.0
-margin_bottom = 928.0
+[node name="state" type="TextEdit" parent="PinControl/VBoxContainer/TCK"]
+offset_left = 33.0
+offset_right = 110.0
+offset_bottom = 29.0
+size_flags_horizontal = 3
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="button" type="Button" parent="PinControl/TDI"]
-margin_left = 224.0
-margin_top = 864.0
-margin_right = 336.0
-margin_bottom = 928.0
-text = "Toggle"
+[node name="button" type="Button" parent="PinControl/VBoxContainer/TCK"]
+offset_left = 114.0
+offset_right = 156.0
+offset_bottom = 29.0
+text = "Tick"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label" type="Label" parent="PinControl/TDI"]
-margin_left = 176.0
-margin_top = 864.0
-margin_right = 216.0
-margin_bottom = 878.0
+[node name="TDI" type="HBoxContainer" parent="PinControl/VBoxContainer"]
+offset_top = 66.0
+offset_right = 156.0
+offset_bottom = 95.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="PinControl/VBoxContainer/TDI"]
+offset_top = 1.0
+offset_right = 26.0
+offset_bottom = 27.0
 text = "TDI"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TDO" type="Control" parent="PinControl"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="state" type="TextEdit" parent="PinControl/TDO"]
-margin_left = 176.0
-margin_top = 792.0
-margin_right = 216.0
-margin_bottom = 832.0
+[node name="state" type="TextEdit" parent="PinControl/VBoxContainer/TDI"]
+offset_left = 30.0
+offset_right = 90.0
+offset_bottom = 29.0
+size_flags_horizontal = 3
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="button" type="Button" parent="PinControl/TDO"]
-margin_left = 224.0
-margin_top = 768.0
-margin_right = 333.0
-margin_bottom = 832.0
+[node name="button" type="Button" parent="PinControl/VBoxContainer/TDI"]
+offset_left = 94.0
+offset_right = 156.0
+offset_bottom = 29.0
 text = "Toggle"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label" type="Label" parent="PinControl/TDO"]
-margin_left = 176.0
-margin_top = 768.0
-margin_right = 216.0
-margin_bottom = 782.0
+[node name="TDO" type="HBoxContainer" parent="PinControl/VBoxContainer"]
+offset_top = 99.0
+offset_right = 156.0
+offset_bottom = 128.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="PinControl/VBoxContainer/TDO"]
+offset_top = 1.0
+offset_right = 34.0
+offset_bottom = 27.0
 text = "TDO"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="state" type="TextEdit" parent="PinControl/VBoxContainer/TDO"]
+offset_left = 38.0
+offset_right = 90.0
+offset_bottom = 29.0
+size_flags_horizontal = 3
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="button" type="Button" parent="PinControl/VBoxContainer/TDO"]
+offset_left = 94.0
+offset_right = 156.0
+offset_bottom = 29.0
+text = "Toggle"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IR" type="HBoxContainer" parent="PinControl/VBoxContainer"]
+offset_top = 132.0
+offset_right = 156.0
+offset_bottom = 158.0
+
+[node name="Label" type="Label" parent="PinControl/VBoxContainer/IR"]
+offset_right = 15.0
+offset_bottom = 26.0
+text = "IR"
+
+[node name="IRValue" type="TextEdit" parent="PinControl/VBoxContainer/IR"]
+offset_left = 19.0
+offset_right = 156.0
+offset_bottom = 26.0
+size_flags_horizontal = 3
+
+[node name="DR" type="HBoxContainer" parent="PinControl/VBoxContainer"]
+offset_top = 162.0
+offset_right = 156.0
+offset_bottom = 188.0
+
+[node name="Label" type="Label" parent="PinControl/VBoxContainer/DR"]
+offset_right = 22.0
+offset_bottom = 26.0
+text = "DR"
+
+[node name="DRValue" type="TextEdit" parent="PinControl/VBoxContainer/DR"]
+offset_left = 26.0
+offset_right = 156.0
+offset_bottom = 26.0
+size_flags_horizontal = 3
+
 [node name="Controller" type="Node" parent="."]
 
 [node name="Model" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( "3" )

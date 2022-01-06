@@ -20,7 +20,7 @@ const PAUSE_IR = 14
 const EXIT2_IR = 15
 const UPDATE_IR = 16
 
-onready var positions = {
+@onready var positions = {
     TEST_LOGIC_RESET: find_node("TEST_LOGIC_RESET"),
     RUN_TEST_IDLE: find_node("RUN_TEST_IDLE"),
     SELECT_DR_SCAN: find_node("SELECT_DR_SCAN"),
@@ -39,11 +39,11 @@ onready var positions = {
     UPDATE_IR: find_node("UPDATE_IR"),
 }
 
-onready var box = find_node("highlighter")
+@onready var box = find_node("Highlighter")
 
 func set_model(node):
     model = node
-    model.connect("state_updated", self, "update_highlighter")
+    model.connect("state_updated", self.update_highlighter)
 
 func update_highlighter(state):
     print("Yo")

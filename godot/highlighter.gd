@@ -1,8 +1,8 @@
-tool
+@tool
 extends Node2D
 
-export(Vector2) var pos = Vector2.ZERO
-export(Vector2) var size = Vector2(100.0, 100.0)
+@export var pos : Vector2 = Vector2.ZERO
+@export var size : Vector2 = Vector2(100.0, 100.0)
 
 func _process(delta):
     update()

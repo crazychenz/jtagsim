@@ -2,6 +2,9 @@ extends Node
 
 signal state_updated(state)
 
+var DATA_REGISTER = [0, 0, 0, 0]
+var INSTRUCTION_REGISTER = [0, 0, 0, 0]
+
 const NOTHING = 0
 const TEST_LOGIC_RESET = 1
 const RUN_TEST_IDLE = 2
@@ -58,6 +61,15 @@ func tick():
         state = machine[state][0]
     else:
         state = machine[state][1]
+    
+    # Assumption: Shifting on rising edge.
+    if state == SHIFT_DR:
+        DATA_REGISTER.push_front(pin_state[TDI])
+        pin_state[TDO] = DATA_REGISTER.pop_back()
+    
+    if state == SHIFT_IR:
+        INSTRUCTION_REGISTER.push_front(pin_state[TDI])
+        pin_state[TDO] = INSTRUCTION_REGISTER.pop_back()
     
     emit_signal("state_updated", state)
 
